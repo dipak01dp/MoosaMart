@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup | MoosaMart</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: #f1f3f6; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+
+        .signup-container {
+            width: 100%; max-width: 800px; display: flex;
+            background: #fff; border-radius: 8px; overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .signup-info {
+            background: #2874f0; width: 40%; padding: 40px 30px; color: white;
+        }
+
+        .signup-info h2 { font-size: 24px; margin-bottom: 15px; }
+        .signup-info p { font-size: 16px; color: #dbdbdb; line-height: 1.4; }
+
+        .signup-form-box { width: 60%; padding: 40px; position: relative; }
+
+        .input-group { position: relative; margin-bottom: 25px; }
+        .input-group input {
+            width: 100%; padding: 10px 0; font-size: 16px;
+            border: none; border-bottom: 2px solid #e0e0e0; outline: none;
+            background: transparent;
+        }
+        .input-group label {
+            position: absolute; top: 10px; left: 0; color: #999;
+            transition: 0.3s; pointer-events: none;
+        }
+
+        .input-group input:focus ~ label, .input-group input:valid ~ label {
+            top: -15px; font-size: 12px; color: #2874f0;
+        }
+
+        .btn-primary {
+            width: 100%; background: #fb641b; color: white; border: none;
+            padding: 14px; font-size: 16px; font-weight: 600; border-radius: 2px;
+            cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        #otp-section { display: none; text-align: center; }
+        .otp-input-wrapper { display: flex; gap: 10px; justify-content: center; margin: 20px 0; }
+        .otp-box {
+            width: 45px; height: 45px; text-align: center; font-size: 20px;
+            border: 2px solid #e0e0e0; border-radius: 5px; outline: none;
+        }
+        .otp-box:focus { border-color: #2874f0; }
+
+        .email-msg { font-size: 13px; color: #2874f0; font-weight: 600; margin-bottom: 10px; }
+
+        @media (max-width: 768px) {
+            .signup-container { flex-direction: column; width: 95%; }
+            .signup-info { width: 100%; padding: 20px; text-align: center; }
+            .signup-form-box { width: 100%; padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="signup-container">
+        <div class="signup-info">
+            <h2>Looks like you're new here!</h2>
+            <p>Sign up with your details to get started with MoosaMart</p>
+        </div>
+
+        <div class="signup-form-box">
+            <form id="registration-form">
+                <div class="input-group">
+                    <input type="text" id="regName" required>
+                    <label>Full Name</label>
+                </div>
+                <div class="input-group">
+                    <input type="email" id="regEmail" required>
+                    <label>Email Address</label>
+                </div>
+                <div class="input-group">
+                    <input type="text" id="regPhone" maxlength="10" required>
+                    <label>Mobile Number</label>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="regPass" required>
+                    <label>Set Password</label>
+                </div>
+                <button type="button" class="btn-primary" onclick="sendOTP()">Continue</button>
+                
+            </form>
+
+            <div id="otp-section">
+                <p class="email-msg"><i class="fas fa-envelope"></i> Verification code sent to your Email</p>
+                <div class="otp-input-wrapper">
+                    <input type="text" id="otp1" class="otp-box" maxlength="1" oninput="moveNext(this, 'otp2')">
+                    <input type="text" id="otp2" class="otp-box" maxlength="1" oninput="moveNext(this, 'otp3')">
+                    <input type="text" id="otp3" class="otp-box" maxlength="1" oninput="moveNext(this, 'otp4')">
+                    <input type="text" id="otp4" class="otp-box" maxlength="1">
+                </div>
+                <button type="button" class="btn-primary" onclick="verifyOTP()">Verify & Create Account</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize EmailJS
+        emailjs.init("T8jNE1vRa8kEztE0s"); 
+
+        let generatedOTP = ""; 
+
+        function moveNext(current, nextFieldID) {
+            if (current.value.length >= 1) {
+                document.getElementById(nextFieldID).focus();
+            }
+        }
+
+        function sendOTP() {
+            const userEmail = document.getElementById('regEmail').value;
+            const userName = document.getElementById('regName').value;
+
+            if(userEmail.includes("@")) {
+                generatedOTP = Math.floor(1000 + Math.random() * 9000).toString();
+
+                const templateParams = {
+                    email: userEmail,
+                    passcode: generatedOTP,
+                    time: "15 minutes"
+                };
+
+                emailjs.send('service_se941d3', 'template_3xvnstk', templateParams)
+                    .then(function(response) {
+                        alert("OTP sent successfully!");
+                        document.getElementById('registration-form').style.display = 'none';
+                        document.getElementById('otp-section').style.display = 'block';
+                    }, function(error) {
+                        alert("Error sending email. Check console.");
+                        console.log('FAILED...', error);
+                    });
+            } else {
+                alert("Please enter a valid email!");
+            }
+        }
+
+        function verifyOTP() {
+            let enteredOTP = "";
+            enteredOTP += document.getElementById('otp1').value;
+            enteredOTP += document.getElementById('otp2').value;
+            enteredOTP += document.getElementById('otp3').value;
+            enteredOTP += document.getElementById('otp4').value;
+
+            if(enteredOTP === generatedOTP) {
+                const userData = {
+                    name: document.getElementById('regName').value,
+                    phone: document.getElementById('regPhone').value,
+                    email: document.getElementById('regEmail').value,
+                    password: document.getElementById('regPass').value
+                };
+
+                localStorage.setItem(userData.phone, JSON.stringify(userData));
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('currentUser', userData.name);
+
+                alert("Account Created Successfully!");
+                window.location.href = 'index.html'; 
+            } else {
+                alert("Invalid OTP! Try again.");
+            }
+        }
+        const resendBtn = document.getElementById('resendBtn');
+const timerDisplay = document.getElementById('timer');
+
+// 1. Page load hote hi check karein ki koi timer pehle se chal raha tha ya nahi
+window.onload = function() {
+    const savedEndTime = localStorage.getItem('otpExpiryTime');
+    if (savedEndTime) {
+        const remainingTime = Math.floor((savedEndTime - Date.now()) / 1000);
+        if (remainingTime > 0) {
+            startTimer(remainingTime);
+        }
+    }
+};
+function handleContinue() {
+    const savedEndTime = localStorage.getItem('otpExpiryTime');
+    const now = Date.now();
+
+    // CHECK: Agar timer abhi chal raha hai, toh naya OTP mat bhejo
+    if (savedEndTime && now < parseInt(savedEndTime)) {
+        const remaining = Math.floor((parseInt(savedEndTime) - now) / 1000);
+        alert(`Please wait ${remaining} seconds before sending another OTP.`);
+        return; // Yahan se function ruk jayega, aage ka code (OTP send) nahi chalega
+    }
+
+    // --- AGAR TIMER NAHI HAI, TOH YE CODE CHALEGA ---
+    
+    console.log("Sending OTP now..."); 
+    // Yahan apna OTP send karne wala API call likhein
+
+    // Timer set karein (60 seconds)
+    const expiryTime = Date.now() + 60 * 1000;
+    localStorage.setItem('otpExpiryTime', expiryTime);
+    
+    startTimer(60); // Wahi purana timer function call karein
+}
+    </script>
+</body>
+</html>

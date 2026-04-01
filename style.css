@@ -1,0 +1,1071 @@
+/* ================================================================
+   MOOSAMART GLOBAL SETTINGS (Color, Fonts & Variables)
+================================================================
+*/
+:root {
+    --primary: #2563eb;    /* Brand Deep Blue */
+    --secondary: #f97316;  /* Brand Vibrant Orange */
+    --bg-light: #f8fafc;   /* Light Grey/Blue Background */
+    --text-dark: #1e293b;  /* Dark Slate for Text */
+    --white: #ffffff;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Modern Soft Shadow */
+    --glass: rgba(255, 255, 255, 0.95); /* Glass Effect Navbar */
+}
+
+/* Reset Browser Default Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+/* ================================================================
+   PROFESSIONAL NAVBAR (FIXES FOR LOGO, ALIGNMENT, BUTTONS)
+================================================================
+*/
+.main-nav {
+    background: #fff;
+    padding: 0.6rem 0; /* Compact height */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #eaeef2; /* Soft bottom border */
+}
+
+.nav-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center; /* Vertically center everything */
+    justify-content: space-between;
+    padding: 0 25px;
+}
+
+/* --- FIX: Logo & Name Same Line --- */
+.brand-wrapper {
+    display: flex;
+    align-items: center; /* Perfect vertical centering */
+    gap: 10px; /* Space between logo and text */
+    text-decoration: none;
+}
+
+/* --- FIX: Image Not Showing (Size & Display) --- */
+.logo-container {
+    width: 40px;  /* Defined width */
+    height: 40px; /* Defined height */
+    border-radius: 50%; /* Perfect circle for Dragon logo */
+    overflow: hidden;
+    background: #000; /* Dragon logo has black bg */
+    border: 2px solid var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.brand-logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Important to not stretch image */
+    display: block; /* Ensures browser treats it as block */
+}
+
+.brand-logo {
+    font-size: 24px; /* Reduced for professional look */
+    font-weight: 800;
+    color: var(--primary);
+    letter-spacing: -1.2px;
+}
+
+.brand-logo span { color: var(--secondary); }
+
+/* ================================================================
+   MODERN SEARCH BAR STYLING
+================================================================
+*/
+
+.search-wrapper {
+    flex: 0 1 600px;
+    display: flex;
+    align-items: center;
+    background: #f8fafc; /* Very light grey */
+    border: 1px solid #e2e8f0;
+    border-radius: 12px; /* Smooth corners, not too round */
+    padding: 4px 8px 4px 16px;
+    margin: 0 30px;
+    transition: all 0.3s ease;
+}
+
+/* Jab user search box par click kare (Focus Effect) */
+.search-wrapper:focus-within {
+    background: #ffffff;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+    transform: translateY(-1px);
+}
+
+/* SVG Icon styling */
+.search-svg {
+    width: 20px;
+    height: 20px;
+    margin-right: 12px;
+    transition: 0.3s;
+}
+
+.search-wrapper:focus-within .search-svg path {
+    stroke: var(--primary); /* Icon blue ho jayega click karne par */
+}
+
+.search-wrapper input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 10px 0;
+    font-size: 14px;
+    color: var(--text-dark);
+    outline: none;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Professional Search Button */
+.search-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.search-btn:hover {
+    background: #1d4ed8;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+/* --- FIX: Compact & Stylish Buttons --- */
+.user-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.action-btn {
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 13px;
+    padding: 7px 16px;
+    border-radius: 8px; /* Square with slight roundness */
+    transition: 0.3s all ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Login: Sirf Border aur Text */
+.login-btn {
+    color: var(--text-dark);
+    border: 1px solid #e2e8f0;
+    background: transparent;
+}
+
+.login-btn:hover {
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+    transform: translateY(-2px);
+}
+/* Cart: Primary Color par clean look */
+.cart-btn {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.15);
+}
+
+.cart-btn:hover {
+    background: #1d4ed8; /* Thoda dark blue */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(37, 99, 235, 0.25);
+}
+
+/* Zoom animation on all action items */
+.brand-wrapper:hover .logo-container,
+.action-btn:hover,
+.btn-primary:hover,
+.product-card:hover {
+    transform: scale(1.05); /* Slight zoom on touch/hover */
+}
+/* ================================================================
+   IMAGE LIGHTBOX MODAL STYLES (BLUR & ZOOM)
+================================================================
+*/
+
+/* 1. The Overlay (Background) */
+.modal-overlay {
+    display: none; /* Initially Hidden */
+    position: fixed; /* Stays in place when scrolling */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Dark Semi-transparent background */
+    
+    /* PROBLEM FIX: Background Blur */
+    backdrop-filter: blur(8px); /* Modern blur effect */
+    -webkit-backdrop-filter: blur(8px); /* Safari support */
+    
+    z-index: 2000; /* Must be higher than Navbar (1000) */
+    justify-content: center;
+    align-items: center;
+    opacity: 0; /* Starts invisible for animation */
+    transition: opacity 0.4s ease; /* Smooth fade in */
+}
+
+/* Class to show the modal (toggled by JS) */
+.modal-overlay.show {
+    display: flex; /* Centering content */
+    opacity: 1; /* Fades in */
+}
+
+/* 2. Modal Content Wrapper (Animation Container) */
+.modal-content-wrapper {
+    text-align: center;
+    transform: scale(0.7); /* Starts smaller for animation */
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Pop-out effect */
+    max-width: 90%;
+    max-height: 90%;
+}
+
+/* Class to animate the content (toggled by JS) */
+.modal-overlay.show .modal-content-wrapper {
+    transform: scale(1); /* Zooms to full size */
+}
+
+/* 3. The Enlarged Image */
+.modal-img {
+    max-width: 100%;
+    max-height: 80vh; /* Limits height to 80% of viewport */
+    border-radius: 20px; /* Stylish rounded corners */
+    border: 5px solid #fff; /* White border to make it pop */
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5); /* Deep shadow */
+    object-fit: contain;
+}
+
+/* 4. Caption Text */
+.modal-caption {
+    color: #fff;
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* 5. Close Button (X) */
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #fff;
+    font-size: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    z-index: 2001; /* Higher than content */
+}
+
+.close-modal:hover {
+    color: var(--secondary); /* Turns Orange on hover */
+    transform: scale(1.2);
+}
+/* 
+/* ================================================================
+   HERO BANNER (Main Discount Area)
+================================================================
+*/
+.hero-banner {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    height: 380px;
+    margin: 25px;
+    border-radius: 30px; /* Big Rounded Corners */
+    display: flex;
+    align-items: center;
+    color: white;
+    padding: 0 80px;
+    box-shadow: 0 20px 40px rgba(37, 99, 235, 0.2);
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.cta-button {
+    background: var(--secondary);
+    color: white;
+    border: none;
+    padding: 14px 40px;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+/* Slider Wrapper */
+.hero-slider-wrapper {
+    position: relative;
+    max-width: 1400px;
+    margin: 30px auto;
+    height: 400px; /* Fixed height for consistency */
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.slider-container { width: 100%; height: 100%; position: relative; }
+
+.slide {
+    position: absolute;
+    width: 100%; height: 100%;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+}
+
+.slide.active-slide { opacity: 1; z-index: 5; }
+
+/* Style for Slide 1 (Based on your image) */
+.current-banner-style {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    color: white;
+    padding-left: 80px;
+}
+
+.slide-content h1 { font-size: 3.5rem; margin: 10px 0; font-weight: 800; }
+.slide-content .top-label { font-size: 14px; opacity: 0.9; }
+.slide-content .cta-button {
+    display: inline-block;
+    background: #f97316;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 700;
+    margin-top: 20px;
+} */
+/* Sabse pehle dono ko default set karein */
+.desktop-slide { display: flex !important; }
+.mobile-slide { display: none !important; }
+
+/* Desktop Settings */
+.hero-slider-wrapper {
+    height: 400px; /* PC ke liye fixed height */
+    max-width: 1400px;
+    margin: 20px auto;
+    border-radius: 20px;
+    overflow: hidden;
+}
+/* ================================================================
+    MOBILE RESPONSIVE - HIDE HERO BANNER
+================================================================ */
+
+@media (max-width: 768px) {
+    /* Isse mobile par poora hero section gayab ho jayega */
+    .hero-slider-wrapper {
+        display: none !important;
+    }
+
+    /* Agar aapne koi alag se 'hero-banner' class banayi hai toh use bhi add kar dein */
+    .hero-banner {
+        display: none !important;
+    }
+
+    /* Baaki content (jaise products) upar shift ho jayenge automatically */
+    .container {
+        margin-top: 20px; /* Mobile par thoda space dene ke liye */
+    }
+}
+/* Dots and Arrows */
+.slider-arrow {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    z-index: 10; background: rgba(255,255,255,0.2);
+    border: none; color: white; padding: 15px; cursor: pointer; border-radius: 50%;
+}
+.prev { left: 20px; } .next { right: 20px; }
+
+.slider-dots {
+    position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+    z-index: 10; display: flex; gap: 10px;
+}
+.dot { width: 10px; height: 10px; background: rgba(255,255,255,0.5); border-radius: 50%; cursor: pointer; }
+.dot.active { background: white; transform: scale(1.3); }
+.slide {
+    position: absolute;
+    inset: 0; /* Poori jagah cover karega */
+    opacity: 0;
+    transition: opacity 1s ease-in-out; /* Yehi hai wo animation! */
+    z-index: 1;
+}
+
+.slide.active-slide {
+    opacity: 1;
+    z-index: 5;
+}
+
+/* ================================================================
+   PRODUCT GRID & CARDS (Items Display)
+================================================================
+*/
+.container {
+    max-width: 1250px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 30px;
+}
+
+.product-card {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 20px;
+    transition: 0.4s ease;
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(0,0,0,0.02);
+}
+
+/* --- ANIMATION: Zoom Effect on Hover --- */
+.product-card:hover, .action-btn:hover, .cta-button:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+.img-box {
+    width: 100%;            
+    height: 250px;          /* Aapki pasand ki height */
+    border: 2px solid #000; /* Black Border */
+    border-radius: 15px;    /* Curved Edges */
+    overflow: hidden;       /* Image ko corners se bahar nahi jane dega */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+}
+
+.img-box img {
+    width: 100%;            /* Container ki puri width lega */
+    height: 100%;           /* Container ki puri height lega */
+    
+    /* YAHAN CHANGE HAI: */
+    object-fit: cover;      /* Isse image bina stretch huye pura dabba bhar degi (BEST) */
+    
+    /* Agar aap chahte hain ki image khinch kar (stretch) fit ho, 
+       to 'cover' ki jagah 'fill' likh dein: 
+       object-fit: fill; 
+    */
+    
+    display: block;
+}
+
+/* Hover Effect (Optional: Image thodi badi hogi container ke andar hi) */
+.img-box:hover img {
+    transform: scale(1.05);
+}
+
+/* ================================================================
+   PRICING & BUTTONS (Inside Cards)
+================================================================
+*/
+.current-price {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--text-dark);
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    background: var(--primary);
+    color: white;
+    font-weight: 700;
+    border-radius: 12px;
+    margin-top: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-primary:active {
+    transform: scale(0.95); /* Clicks feeling */
+}
+/* ================================================================
+   CATEGORY DROPDOWN STYLING
+================================================================ */
+
+.category-nav {
+    padding: 15px 0;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+}
+
+.dropdown-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+/* Toggle Button Style */
+.category-toggle-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.category-toggle-btn:hover {
+    background: #1d4ed8;
+    transform: scale(1.02);
+}
+
+.menu-icon { width: 18px; height: 18px; }
+.arrow-down { font-size: 10px; transition: 0.3s; }
+
+/* The Hidden Menu (Dropdown) */
+.category-dropdown-menu {
+    position: absolute;
+    top: 55px; /* Button ke theek neeche */
+    left: 0;
+    width: 600px; /* Mega Menu Width */
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+    padding: 20px;
+    z-index: 900;
+    
+    /* Initially Hidden & Animated */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* Jab menu open ho (Active Class) */
+.category-dropdown-menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.cat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns for categories */
+    gap: 10px;
+}
+
+.cat-link {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+    color: var(--text-dark);
+    padding: 12px 15px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+.cat-link span { font-size: 18px; }
+
+.cat-link:hover {
+    background: rgba(37, 99, 235, 0.08);
+    color: var(--primary);
+    padding-left: 20px; /* Halka sa push effect */
+}
+
+/* Rotate arrow when open */
+.category-toggle-btn.open .arrow-down {
+    transform: rotate(180deg);
+}
+/* ================================================================
+   PROFESSIONAL VISIONARY FOOTER STYLING
+================================================================ */
+
+.main-footer {
+    background: #0f172a; /* Same Deep Dark Blue */
+    color: #f8fafc;
+    padding: 70px 0 40px 0;
+    margin-top: 50px;
+    border-top: 4px solid var(--primary); /* Blue Border Top */
+}
+
+/* Top Branding */
+.footer-top {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.footer-logo { font-size: 36px; font-weight: 800; }
+.footer-logo span { color: var(--secondary); }
+.footer-tagline { font-size: 14px; color: #94a3b8; letter-spacing: 1px; }
+
+/* Visionaries Grid (2-Column) */
+.vision-grid {
+    display: grid;
+    grid-template-columns: 1fr 2px 1fr; /* Two sides and a separator */
+    align-items: center;
+    gap: 40px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.vision-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Profile Photo Styling */
+.profile-wrapper {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%; /* Circle shape */
+    border: 3px solid rgba(255, 255, 255, 0.1); /* Subtle Ring */
+    overflow: hidden;
+    margin-bottom: 20px;
+    transition: 0.3s all ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Photo crop correct karega */
+}
+
+/* Hover Effect on Photo */
+.profile-wrapper:hover {
+    transform: translateY(-5px) scale(1.03);
+    border-color: var(--secondary);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Vision Description Title */
+.vision-title {
+    font-size: 13px;
+    color: #cbd5e1;
+    font-weight: 300;
+    margin-bottom: 15px;
+    letter-spacing: 0.5px;
+}
+
+/* --- VISIONARY BUTTONS (Names) --- */
+.vision-btn {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 25px;
+    border-radius: 30px; /* Pillow Shape */
+    transition: 0.3s all ease;
+    display: inline-block;
+    margin-bottom: 12px; /* Space for email */
+}
+
+/* Pragati Button Styles */
+.pragati-btn {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #cbd5e1;
+    background: transparent;
+}
+
+.pragati-btn:hover {
+    background: #cbd5e1;
+    color: #0f172a;
+    transform: translateY(-2px);
+}
+
+/* Om Ji Button Styles */
+.omji-btn {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--secondary); /* Names in Orange/Gold */
+    background: transparent;
+}
+
+.omji-btn:hover {
+    background: var(--secondary);
+    color: #0f172a;
+    transform: translateY(-2px);
+}
+
+/* --- VISIONARY EMAIL --- */
+.vision-email {
+    display: block;
+    font-size: 13px;
+    color: #64748b; /* Subdued color, becomes visible on hover */
+    text-decoration: none;
+    font-weight: 400;
+    transition: 0.3s all ease;
+    margin-top: 5px;
+}
+
+.vision-email:hover {
+    color: #fff;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+/* Separator Line */
+.vision-separator {
+    height: 100px;
+    background: rgba(255,255,255,0.05);
+}
+
+/* Copyright Line */
+.footer-copyright {
+    text-align: center;
+    font-size: 13px;
+    color: #64748b;
+    margin-top: 50px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding-top: 20px;
+}
+/* ================================================================
+   MOOSAMART RESPONSIVE ENGINE (Mobile & Tablet Fixes)
+================================================================ */
+
+/* --- 1. Tablets aur Chote Laptops (Max 1024px) --- */
+@media (max-width: 1024px) {
+    .nav-container {
+        padding: 0 15px;
+    }
+    .search-wrapper {
+        flex: 1;
+        margin: 0 15px;
+    }
+    .hero-slider-wrapper {
+        height: 300px;
+        margin: 15px;
+    }
+}
+
+/* --- 2. Mobile Landscape & Tablets (Max 768px) --- */
+@media (max-width: 768px) {
+    /* Navbar stack logic */
+    .nav-container {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    
+    .search-wrapper {
+        order: 3; /* Search bar ko 3rd line par bhej dega */
+        width: 100%;
+        margin: 10px 0 0 0;
+        flex: none;
+    }
+
+    /* Hero Section text size */
+    .slide-content h1 {
+        font-size: 2rem;
+    }
+
+    /* Product Grid: 2 columns on mobile */
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    /* Footer: Visionaries stack vertically */
+    .vision-grid {
+        grid-template-columns: 1fr; /* Single column */
+        gap: 30px;
+    }
+
+    .vision-separator {
+        display: none; /* Middle line hide kar dein */
+    }
+}
+
+/* --- 3. Small Smartphones (Max 480px) --- */
+@media (max-width: 480px) {
+    .brand-logo {
+        font-size: 20px;
+    }
+
+    .logo-container {
+        width: 35px;
+        height: 35px;
+    }
+
+    .slide-content {
+        padding-left: 20px; /* Hero text padding kam karein */
+    }
+
+    .slide-content h1 {
+        font-size: 1.5rem;
+    }
+
+    .category-dropdown-menu {
+        width: 95vw; /* Dropdown screen ki width lega */
+        left: 2.5vw;
+    }
+
+    .cat-grid {
+        grid-template-columns: 1fr; /* Categories ek ke niche ek */
+    }
+
+    .product-grid {
+        grid-template-columns: 1fr; /* Products ek ke niche ek */
+    }
+
+    .footer-logo {
+        font-size: 28px;
+    }
+}
+/* Universal Responsive Grid Logic */
+.product-grid {
+    display: grid;
+    /* Laptop: 4-5 columns | Tablet: 2-3 columns | Mobile: 1-2 columns */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+    gap: 20px;
+    padding: 15px;
+}
+
+@media (max-width: 768px) {
+    .product-grid {
+        /* Mobile par 2 products ek line mein dikhane ke liye (Flipkart style) */
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .product-grid {
+        /* Bahut chote phones par 1 product per line (optional) */
+        grid-template-columns: 1fr;
+    }
+}
+/* --- WHATSAPP BUTTON STYLING --- */
+.footer-contact-wrapper {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #25d366; /* WhatsApp Green */
+    color: white;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 50px; /* Capsule shape */
+    font-weight: 700;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+}
+
+.wa-icon {
+    width: 20px;
+    height: 20px;
+}
+
+/* Hover Effect */
+.whatsapp-btn:hover {
+    background-color: #128c7e; /* Darker Green */
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+    color: #fff;
+}
+
+/* Click Animation */
+.whatsapp-btn:active {
+    transform: scale(0.95);
+}
+
+/* --- MOBILE RESPONSIVE FIX --- */
+@media (max-width: 768px) {
+    .whatsapp-btn {
+        width: 90%; /* Mobile par button bada aur easy-to-tap hoga */
+        justify-content: center;
+        padding: 15px;
+        font-size: 14px;
+    }
+}
+/* Instagram Button with Icon Styling */
+.insta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px; /* Icon aur text ke beech ka gap */
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    color: white;
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 16px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 15px rgba(220, 39, 67, 0.3);
+}
+
+/* Icon ki specific styling */
+.insta-btn i {
+    font-size: 22px; /* Icon ka size thoda bada rakha hai */
+    transition: transform 0.3s ease;
+}
+
+/* Hover effect pe icon rotate hoga */
+.insta-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(220, 39, 67, 0.5);
+}
+
+.insta-btn:hover i {
+    transform: rotate(15deg) scale(1.2); /* Icon halka sa tedha aur bada hoga */
+}
+
+/* Mobile Responsive Fix */
+@media (max-width: 768px) {
+    .insta-btn {
+        width: 90%;
+        margin: 10px auto;
+        font-size: 15px;
+    }
+}
+/* User Nav Container */
+.user-nav-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* Profile Image Styling */
+.nav-profile-img {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile-trigger {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Dropdown Menu Box */
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 200px;
+    background: #ffffff;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    list-style: none;
+    padding: 8px 0;
+    margin-top: 15px;
+    display: none; /* Initially Hidden */
+    z-index: 9999;
+    border: 1px solid #ebebeb;
+}
+
+/* Show Dropdown on Hover */
+.user-profile-dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* Dropdown Arrow */
+.dropdown-menu::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    right: 25px;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #ffffff;
+}
+
+/* Menu Items Styling */
+.dropdown-menu li a {
+    padding: 10px 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.dropdown-menu li a i {
+    color: #2874f0; /* Flipkart Blue */
+    width: 16px;
+}
+
+.dropdown-menu li a:hover {
+    background: #f5faff;
+    color: #2874f0;
+}
+
+.logout-link { color: #d32f2f !important; }
+
+/* Mobile Support */
+@media (max-width: 768px) {
+    .dropdown-menu {
+        width: 180px;
+        position: absolute; /* Mobile pe bhi trigger ke niche hi khulega */
+    }
+}
+/* 1. Gap khatam karne ke liye trigger par padding badhayein */
+.user-profile-dropdown {
+    position: relative;
+    padding-bottom: 20px; /* Ye ek 'invisible bridge' bana dega menu tak */
+    margin-bottom: -20px; /* Layout ko disturb hone se rokega */
+}
+
+/* 2. Dropdown ki position thodi upar karein taaki gap na rahe */
+.dropdown-menu {
+    position: absolute;
+    top: 100%; /* Bilkul trigger ke niche se shuru hoga */
+    right: 0;
+    width: 200px;
+    background: #ffffff;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    list-style: none;
+    padding: 8px 0;
+    margin-top: 5px; /* Pehle ye zyada tha, ab sirf 5px rakhein */
+    display: none;
+    z-index: 9999;
+    border: 1px solid #ebebeb;
+}
+
+/* Hover logic (Same rahegi) */
+.user-profile-dropdown:hover .dropdown-menu {
+    display: block;
+}

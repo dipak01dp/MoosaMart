@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoosaMart | Shop Smart, Live Better</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<div id="imageModal" class="modal-overlay">
+    <span class="close-modal">&times;</span>
+    
+    <div class="modal-content-wrapper">
+        <img src="logo.jpeg" alt="MoosaMart Enlarged Logo" id="modalImage" class="modal-img">
+        <p class="modal-caption">MoosaMart © 2026 | A Vision by Om Ji Tripathi & Pragati Omar</p>
+    </div>
+</div>
+
+<body>
+
+   <nav class="main-nav">
+    <div class="nav-container">
+        
+        <div class="brand-wrapper">
+            <div class="logo-container">
+                <img src="logo.jpeg" alt="MoosaMart" class="brand-logo-img" onerror="this.src='logo.jpeg'"> 
+            </div>
+            <div class="brand-logo">Moosa<span>Mart</span></div>
+        </div>
+        
+        <div class="search-wrapper">
+             <svg class="search-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                 <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                 <path d="M21 21L16.65 16.65" stroke="#94a3b8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+             </svg>
+             <input type="text" placeholder="Search for products, brands and more...">
+             <button class="search-btn">Search</button>
+        </div>
+
+        <div class="user-actions">
+            <div class="user-nav-container">
+                <div id="logged-out-view">
+                         <a href="login.html" class="action-btn login-btn">Login</a>
+                </div>
+                <div id="logged-in-view" class="user-profile-dropdown" style="display: none;">
+                    <div class="profile-trigger">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="User" class="nav-profile-img">
+                        <span class="user-name-text">My Account</span>
+                        <i class="fa-solid fa-chevron-down" style="font-size: 10px; margin-left: 5px;"></i>
+                    </div>
+                    
+                    <ul class="dropdown-menu">
+                        <li><a href="#"><i class="fa-solid fa-circle-user"></i> My Profile</a></li>
+                        <li><a href="#"><i class="fa-solid fa-box"></i> Orders</a></li>
+                        <li><a href="#"><i class="fa-solid fa-heart"></i> Wishlist</a></li>
+                        <li><a href="#"><i class="fa-solid fa-gift"></i> Rewards</a></li>
+                        <hr style="border: 0.5px solid #f0f0f0; margin: 5px 0;">
+                        <li><a href="#" onclick="toggleUserStatus()" class="logout-link"><i class="fa-solid fa-power-off"></i> Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+            <a href="#" class="action-btn cart-btn">
+                <span>🛒</span>
+                <span class="cart-count">0</span>
+            </a>
+        </div>
+    </div>
+</nav>
+
+    <!-- <header class="hero-banner">
+        <div class="hero-content">
+            <span class="tagline">Exclusive Deals Only at MoosaMart</span>
+            <h1>Upgrade Your Lifestyle</h1>
+            <p>Get up to 50% off on all premium electronics this week.</p>
+            <button class="cta-button">Shop Now</button>
+        </div>
+    </header> -->
+    <section class="hero-slider-wrapper">
+    <div class="slider-container" id="slider">
+        <div class="slide active-slide current-banner-style">
+            <div class="slide-content">
+                <h1>Upgrade Your Lifestyle</h1>
+                <p>Exclusive Deals Only at MoosaMart</p>
+                <a href="#" class="cta-button">Shop Now</a>
+            </div>
+        </div>
+        
+        <div class="slide" style="background-image: url('hero01.jpeg');"></div>
+        <div class="slide" style="background-image: url('hero04.jpeg');"></div>
+        <div class="slide" style="background-image: url('hero03.jpeg');"></div>
+        <div class="slide" style="background-image: url('hero05.jpeg');"></div>
+        <div class="slide" style="background-image: url('hero06.jpeg');"></div>
+    </div>
+
+    <button class="slider-arrow prev" id="prevSlide">&#10094;</button>
+    <button class="slider-arrow next" id="nextSlide">&#10095;</button>
+
+    <div class="slider-dots" id="sliderDots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+    </div>
+</section>
+
+<script src="script.js"></script>
+
+    <section class="category-nav">
+    <div class="container">
+        <div class="dropdown-wrapper">
+            <button class="category-toggle-btn" id="catMenuBtn">
+                <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+                Shop By Category
+                <span class="arrow-down">▼</span>
+            </button>
+
+            <div class="category-dropdown-menu" id="catDropdown">
+                <div class="cat-grid">
+                    <a href="#" class="cat-link"><span>📱</span> Mobiles & Tablets</a>
+                    <a href="#" class="cat-link"><span>💻</span> Laptops & Gaming</a>
+                    <a href="#" class="cat-link"><span>👕</span> Men's Fashion</a>
+                    <a href="#" class="cat-link"><span>👗</span> Women's Fashion</a>
+                    <a href="#" class="cat-link"><span>🏠</span> Home & Kitchen</a>
+                    <a href="#" class="cat-link"><span>🎧</span> Accessories</a>
+                    <a href="#" class="cat-link"><span>🧴</span> Beauty & Care</a>
+                    <a href="#" class="cat-link"><span>⚡</span> Electronics</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+
+    <main class="container">
+        <div class="section-header">
+            <h2>Trending Products</h2>
+        </div>
+        
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="img-box">
+                    <img src="hmt.jpg" alt="Watch">
+                </div>
+                <div class="product-info">
+                    <span class="category-label">Electronics</span>
+                    <h3>Moosa Premium Watch</h3>
+                    <div class="pricing">
+                        <span class="current-price">₹1,499</span>
+                        <span class="old-price">₹2,999</span>
+                    </div>
+                    <button class="btn-primary">Add to Cart</button>
+                </div>
+            </div>
+            
+            </div>
+    </main>
+    <footer class="main-footer">
+    <div class="container">
+        
+        <div class="footer-top">
+            <h2 class="footer-logo">Moosa<span>Mart</span></h2>
+            <p class="footer-tagline">Quality you trust, Service you deserve.</p>
+        </div>
+
+        <div class="vision-grid">
+            
+            <div class="vision-card omji-side">
+                <div class="profile-wrapper">
+                    <img src="om-ji.jpeg" alt="Om Ji Tripathi" class="profile-img">
+                </div>
+                <div class="vision-text">
+                    <p class="vision-title">Founder & Co-Visionary</p>
+                    <a href="#" class="vision-btn name-btn omji-btn">Om Ji Tripathi</a>
+                    <a href="mailto:tripathiomji2006@gmail.com" class="vision-email">tripathiomji2006@gmail.com</a>
+                </div>
+            </div>
+
+            <div class="vision-separator"></div>
+
+            <div class="vision-card pragati-side">
+                <div class="profile-wrapper">
+                    <img src="pragati.jpeg" alt="Pragati Omar" class="profile-img">
+                </div>
+                <div class="vision-text">
+                    <p class="vision-title">Co-Visionary & Curator</p>
+                    <a href="#" class="vision-btn name-btn pragati-btn">Pragati Omar</a>
+                    <a href="mailto:pragatiomar667@gmail.com" class="vision-email">pragatiomar667@gmail.com</a>
+                </div>
+            </div>
+
+        </div>
+      <div class="footer-contact-wrapper">
+    <a href="https://wa.me/919198924465?text=Hello%20MoosaMart!%20I%20have%20a%20query." 
+       class="whatsapp-btn" 
+       target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WA" class="wa-icon">
+        Contact Us on WhatsApp
+    </a>
+</div>
+<div class="footer-contact-wrapper">
+    <a href="https://ig.me/m/broinsidehit_1610" class="insta-btn" target="_blank">
+        <i class="fab fa-instagram"></i> DM us on Instagram
+    </a>
+</div>
+        <div class="footer-copyright">
+            <p>MoosaMart &copy; 2026</p>
+        </div>
+
+    </div>
+    </footer>
+<script src="script.js"></script>
+
+</body>
+</html>
